@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'webmock'
+WebMock.enable!
 require 'kotaim'
 
 RSpec.configure do |config|

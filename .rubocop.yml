@@ -1,0 +1,153 @@
+AllCops:
+  TargetRubyVersion: 2.3.6
+
+  # Include gemspec and Rakefile
+  Include:
+    - '**/*.gemspec'
+    - '**/Rakefile'
+    - '**/*.rb'
+
+  Exclude:
+    - Gemfile.lock
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'script/*'
+    - 'db/migrate/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+
+Metrics/AbcSize:
+  Max: 38
+
+ClassLength:
+  CountComments: false
+  Max: 650
+
+Metrics/ModuleLength:
+  Max: 500
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Metrics/BlockLength:
+  Max: 35
+  Exclude:
+    - spec/**/*.rb
+
+Documentation:
+  Enabled: false
+
+Eval:
+  Enabled: false
+
+IfUnlessModifier:
+  Enabled: false # skipping
+
+LineLength:
+  Max: 150
+
+MethodLength:
+  Max: 80
+
+PerceivedComplexity:
+  Max: 10
+
+RaiseArgs:
+  Enabled: false # skipping
+
+SignalException:
+  Enabled: false # skipping
+
+GlobalVars:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+Naming/VariableNumber: # variables like space_1 or approval_02
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - Gemfile
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/NumericPredicate: # seconds == 0
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+#-- rails --
+Rails:
+  Enabled: true
+
+Output:
+  Enabled: false
+
+Rails/ActionFilter:
+  Enabled: false
+
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/ReadWriteAttribute:
+  Enabled: false
+
+#-- rspec -
+require: rubocop-rspec
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+#--
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false

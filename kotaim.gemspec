@@ -33,7 +33,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'actionview'
+  spec.add_dependency 'actionview', ">= 5.2.2.1"
+
   spec.add_dependency 'feedjira'
   spec.add_dependency 'nokogiri'
   spec.add_dependency 'rest-client'

@@ -1,25 +1,43 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
 AllCops:
-  TargetRubyVersion: 2.3.6
+  TargetRubyVersion: 2.6
 
   # Include gemspec and Rakefile
   Include:
+    - '**/*.rb'
     - '**/*.gemspec'
     - '**/Rakefile'
-    - '**/*.rb'
 
   Exclude:
-    - Gemfile.lock
     - 'db/schema.rb'
     - 'bin/*'
     - 'script/*'
     - 'db/migrate/*'
     - 'vendor/**/*'
-    - 'node_modules/**/*'
+    - 'util/**/*'
 
+# Lint
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+# Metrics
 Metrics/AbcSize:
   Max: 38
 
-ClassLength:
+Metrics/ClassLength:
   CountComments: false
   Max: 650
 
@@ -34,56 +52,35 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
 
-Documentation:
-  Enabled: false
-
-Eval:
-  Enabled: false
-
-IfUnlessModifier:
-  Enabled: false # skipping
-
-LineLength:
-  Max: 150
-
-MethodLength:
+Metrics/MethodLength:
   Max: 80
 
-PerceivedComplexity:
+Metrics/PerceivedComplexity:
   Max: 10
 
-RaiseArgs:
+# Style
+Style/Documentation:
+  Enabled: false
+
+Security/Eval:
+  Enabled: false
+
+Style/IfUnlessModifier:
   Enabled: false # skipping
 
-SignalException:
+Style/RaiseArgs:
   Enabled: false # skipping
 
-GlobalVars:
-  Enabled: false
+Style/SignalException:
+  Enabled: false # skipping
 
-Layout/SpaceInsideHashLiteralBraces:
+Style/GlobalVars:
   Enabled: false
-
-Layout/SpaceInsideBlockBraces:
-  Enabled: false
-
-Naming/VariableNumber: # variables like space_1 or approval_02
-  Enabled: false
-
-Naming/AccessorMethodName:
-  Enabled: false
-
-Naming/FileName:
-  Exclude:
-    - Gemfile
 
 Style/StringLiterals:
   Enabled: false
 
 Style/WordArray:
-  Enabled: false
-
-Style/SymbolArray:
   Enabled: false
 
 Style/NumericLiterals:
@@ -101,7 +98,54 @@ Style/AsciiComments:
 Style/FormatStringToken:
   Enabled: false
 
-#-- rails --
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
+
+# layout
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 150
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+# Naming
+Naming/VariableNumber: # variables like space_1 or approval_02
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+# Rails
 Rails:
   Enabled: true
 
@@ -120,9 +164,7 @@ Rails/SkipsModelValidations:
 Rails/ReadWriteAttribute:
   Enabled: false
 
-#-- rspec -
-require: rubocop-rspec
-
+# RSpec
 RSpec/DescribedClass:
   Enabled: false
 
@@ -131,8 +173,6 @@ RSpec/InstanceVariable:
 
 RSpec/AnyInstance:
   Enabled: false
-
-#--
 
 RSpec/NamedSubject:
   Enabled: false

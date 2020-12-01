@@ -31,7 +31,8 @@ puts info
 info = {
     title: 'my blog',
     url: 'https://blog.naver.com/user',
-    rss_url: nil,
+    rss_url: 'https://rss.blog.naver.com/user.xml',
+    image: 'https://blogfthumb.phinf.naver.net/myimage.jpg',
     description: 'my blog',
     generator: 'Naver Blog'
 }

@@ -48,9 +48,11 @@ RSpec.describe 'egloos' do
 
     it 'collects good tags and images from post' do
       exp0 = ["일본여행", "벳부", "오이타", "큐슈", "규슈", "젤라또", "젤라토", "아이스크림"]
-      exp1 = ["http://pds21.egloos.com/pds/201606/21/17/a0008417_5768bcfbd06eb.jpg",
-              "http://pds21.egloos.com/pds/201606/21/17/a0008417_5768bcfc8c785.jpg",
-              "http://pds25.egloos.com/pds/201606/21/17/a0008417_5768bcfcde1d3.jpg"]
+      exp1 = [
+        "http://pds21.egloos.com/pds/201606/21/17/a0008417_5768bcfbd06eb.jpg",
+        "http://pds21.egloos.com/pds/201606/21/17/a0008417_5768bcfc8c785.jpg",
+        "http://pds25.egloos.com/pds/201606/21/17/a0008417_5768bcfcde1d3.jpg"
+      ]
       xml = RestClient.get(@blogger_rss_url).body
       feed = Feedjira.parse(xml)
 

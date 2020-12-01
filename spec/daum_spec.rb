@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.xdescribe 'daum' do
+RSpec.describe 'daum' do
   include WebMock::API
 
   context 'when handling daum blog' do
@@ -32,7 +32,7 @@ RSpec.xdescribe 'daum' do
         )
         .to_return(status: 200, body: daum_post_sample, headers: {})
 
-      stub_request(:get, "http://blog.daum.net//blog.daum.net/yoji88/api")
+      stub_request(:get, "http://blog.daum.net/yoji88/api")
         .with(
           headers: {
             'Accept' => '*/*',
@@ -60,7 +60,8 @@ RSpec.xdescribe 'daum' do
       exp = {
         description: "중국 사람과 자연의 참 모습을 바르게 보여드립니다.\n\n",
         generator: "Daum Blog (http://blog.daum.net/)",
-        rss_url: nil,
+        rss_url: @blogger_rss_url,
+        image: "http://cfile215.uf.daum.net/image/1415A93B4E12FA4515DD40",
         title: "콩지의 중국여행기",
         url: "http://blog.daum.net/yoji88"
       }
@@ -69,8 +70,12 @@ RSpec.xdescribe 'daum' do
     end
 
     it 'collects good tags and images from post' do
-      exp0 = []
-      exp1 = []
+      exp0 = ["鬼谷귀곡)잔도", "대협곡의 유리판 다리", "십리화랑", "장가계", "중국여행기", "호남성"]
+      exp1 = [
+        "https://t1.daumcdn.net/cfile/blog/273EDF45588E80F429",
+        "https://t1.daumcdn.net/cfile/blog/2372E840588E7FFE27",
+        "https://t1.daumcdn.net/cfile/blog/23299C44588E802235"
+      ]
       xml = RestClient.get(@blogger_rss_url).body
       feed = Feedjira.parse(xml)
 

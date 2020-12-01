@@ -83,27 +83,31 @@ module Kotaim
     end
 
     def self.get_tags_and_images_from_daum(url)
-      resp = RestClient.get(url)
-      doc = Nokogiri::HTML(resp.body)
+      # resp = RestClient.get(url)
+      # doc = Nokogiri::HTML(resp.body)
 
-      u = URI.parse(url)
-      u3 = doc.css('iframe').attribute('src').value
-      u4 = format('http://%s%s', u.host, u3)
-      resp = RestClient.get(u4)
-      doc = Nokogiri::HTML(resp.body)
+      # u = URI.parse(url)
+      # u3 = doc.css('iframe').attribute('src').value
+      # u4 = format('http:%s', u3)
+      # resp = RestClient.get(u4)
+      # doc = Nokogiri::HTML(resp.body)
 
-      ret_tag = doc.css('div.tagList a').map do |e|
-        t = ActionView::Base.full_sanitizer.sanitize(e.text)
-        sanitize(t)
-      end
+      # ret_tag = doc.css('div.tagList a').map do |e|
+      #   t = ActionView::Base.full_sanitizer.sanitize(e.text)
+      #   sanitize(t)
+      # end
 
       ###
-
       url = convert_to_mobile_url(url)
       resp = RestClient.get(url)
       doc = Nokogiri::HTML(resp.body)
 
-      ret_img = doc.css('div#article img').map do |e|
+      ret_tag = doc.css('div.list_tag a.link_tag').map do |e|
+        t = ActionView::Base.full_sanitizer.sanitize(e.text)
+        sanitize(t)
+      end
+
+      ret_img = doc.css('div.blogview_content img').map do |e|
         e['src'].gsub('R400x0', 'image')
       end
 

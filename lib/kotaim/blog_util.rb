@@ -16,14 +16,13 @@ module Kotaim
 
       puts format("$$$$ generator: %s $$$$", feed.generator)
 
-      ret = {
+      {
         title: feed.title,
         url: feed.url,
         rss_url: feed.feed_url,
         description: feed.description,
         generator: feed.generator
       }
-      ret
     end
 
     def self.guess_rss_url(url)

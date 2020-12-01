@@ -76,7 +76,7 @@ module Kotaim
       end
 
       doc.css('span._img').map do |e|
-        found = e['thumburl'] + 'w2'
+        found = format('%s%s', e['thumburl'], 'w2')
         ret_img << found
       end
 

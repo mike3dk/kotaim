@@ -13,17 +13,15 @@ module Kotaim
       when 'Egloos'
         get_tags_and_images_from_egloos(url)
       else
-        puts 'NO PARSER'
         []
       end
     end
 
     def self.get_tags_and_images_from_egloos(url)
-      puts format('<<< get_tags_and_images_from_egloos(%s) >>>', url)
       resp = RestClient.get(url)
       doc = Nokogiri::HTML(resp.body)
 
-      ret_tag = doc.css("a[rel='tag']").map do |e|
+      ret_tag = doc.css("div#section_content a[rel='tag']").map do |e|
         t = ActionView::Base.full_sanitizer.sanitize(e.text)
         sanitize(t)
       end
@@ -36,7 +34,6 @@ module Kotaim
     end
 
     def self.get_tags_and_images_from_tistory(url)
-      puts format('<<< get_tags_and_images_from_tistory(%s) >>>', url)
       resp = RestClient.get(url)
       doc = Nokogiri::HTML(resp.body)
 
@@ -53,7 +50,6 @@ module Kotaim
     end
 
     def self.get_tags_and_images_from_naver(url)
-      puts format('<<< get_tags_and_images_from_naver(%s) >>>', url)
       url = handle_blogme(url)
 
       resp = RestClient.get(url)
@@ -87,8 +83,6 @@ module Kotaim
     end
 
     def self.get_tags_and_images_from_daum(url)
-      puts format('<<< get_tags_and_images_from_daum(%s) >>>', url)
-
       resp = RestClient.get(url)
       doc = Nokogiri::HTML(resp.body)
 

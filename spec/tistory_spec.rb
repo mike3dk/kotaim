@@ -37,7 +37,8 @@ RSpec.describe 'tistory' do
       exp = {
         description: "미국서부여행과 LA생활의 이야기들",
         generator: "TISTORY",
-        rss_url: nil,
+        rss_url: @blogger_rss_url,
+        image: nil,
         title: "위기주부의 미국서부여행과 LA생활",
         url: "https://chakeun.tistory.com/"
       }

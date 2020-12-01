@@ -50,9 +50,10 @@ RSpec.describe 'naver' do
       exp = {
         title: "용의주도미스고의 행복만들기♪",
         url: "http://blog.naver.com/ssamssam48",
-        rss_url: nil,
+        rss_url: @blogger_rss_url,
         description: "네이버 여행+ 제주에디터\n반려견과 제주살이\n올드잉글리쉬쉽독 여름치치\n여행은 내 삶의 樂",
-        generator: "Naver Blog"
+        generator: "Naver Blog",
+        image: "http://blogpfthumb.phinf.naver.net/20141208_167/ssamssam48_1417966160918tHsvF_JPEG/1234.jpg?type=m2"
       }
       ret = Kotaim::BlogUtil.collect_info_with_url(@blogger_url)
       expect(ret).to eq(exp)

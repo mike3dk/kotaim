@@ -4,7 +4,7 @@ RSpec.describe Kotaim do
   include WebMock::API
 
   it 'has a version number' do
-    expect(Kotaim::VERSION).not_to be nil
+    expect(Kotaim::VERSION).to be '0.2.0'
   end
 
   it 'has get_tags_and_images class method' do
@@ -13,7 +13,9 @@ RSpec.describe Kotaim do
   end
 
   it 'has collect_info_with_url class method' do
-    stub_request(:get, "http://foo.com/rss")
+    rss_url = "http://foo.com/rss"
+
+    stub_request(:get, rss_url)
       .with(
         headers: {
           'Accept' => '*/*',
@@ -36,7 +38,8 @@ RSpec.describe Kotaim do
       url: nil,
       description: nil,
       generator: nil,
-      rss_url: nil
+      rss_url: rss_url,
+      image: nil
     }
 
     ret = Kotaim::BlogUtil.collect_info_with_url('https://foo.com')

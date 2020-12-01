@@ -60,7 +60,7 @@ module Kotaim
       doc = Nokogiri::HTML(resp.body)
 
       u = URI.parse(url)
-      u3 = doc.css('frame#mainFrame').attribute('src').value
+      u3 = doc.css('iframe#mainFrame').attribute('src').value
       u4 = format('https://m.%s%s', u.host, u3)
       resp = RestClient.get(u4)
       doc = Nokogiri::HTML(resp.body)
@@ -93,7 +93,7 @@ module Kotaim
       doc = Nokogiri::HTML(resp.body)
 
       u = URI.parse(url)
-      u3 = doc.css('frame').attribute('src').value
+      u3 = doc.css('iframe').attribute('src').value
       u4 = format('http://%s%s', u.host, u3)
       resp = RestClient.get(u4)
       doc = Nokogiri::HTML(resp.body)

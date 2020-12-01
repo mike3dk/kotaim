@@ -18,7 +18,8 @@ RSpec.describe Kotaim do
         headers: {
           'Accept' => '*/*',
           'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'User-Agent' => 'Feedjira 2.2.0'
+          'Host' => 'foo.com',
+          'User-Agent' => 'rest-client/2.1.0 (darwin19.6.0 x86_64) ruby/2.7.2p137'
         }
       )
       .to_return(
@@ -35,7 +36,7 @@ RSpec.describe Kotaim do
       url: nil,
       description: nil,
       generator: nil,
-      rss_url: 'http://foo.com/rss'
+      rss_url: nil
     }
 
     ret = Kotaim::BlogUtil.collect_info_with_url('https://foo.com')

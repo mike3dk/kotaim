@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'webmock'
 WebMock.enable!
 require 'kotaim'
+require 'pry'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

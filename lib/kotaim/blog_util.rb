@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+require 'rest-client'
 require 'feedjira'
+require 'action_view'
 
 module Kotaim
   module BlogUtil
@@ -12,7 +14,8 @@ module Kotaim
     def self.collect_info(rss_url)
       puts format('>> rss_url: %s', rss_url)
       ::Feedjira::Feed.add_common_feed_element("generator")
-      feed = Feedjira::Feed.fetch_and_parse(rss_url)
+      xml = RestClient.get(rss_url).body
+      feed = Feedjira.parse(xml)
 
       puts format("$$$$ generator: %s $$$$", feed.generator)
 

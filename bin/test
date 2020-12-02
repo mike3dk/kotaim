@@ -10,6 +10,25 @@ require 'kotaim'
 # require "pry"
 # Pry.start
 
-url = 'https://blog.naver.com/ssamssam48'
-ret = Kotaim::BlogUtil.collect_info_with_url(url)
-puts ret
+urls = [
+  'http://blog.naver.com/ssamssam48',
+  'http://blog.daum.net/yoji88',
+  'http://chakeun.tistory.com/',
+  'http://kcanari.egloos.com',
+  'http://nau2001.blog.me'
+]
+
+urls.each do |url|
+  puts format("<<< url: '%s' >>>", url)
+  info = Kotaim::BlogUtil.collect_info_with_url(url)
+
+  rss_url = info[:rss_url]
+  puts rss_url
+  xml = RestClient.get(rss_url).body
+  feed = Feedjira.parse(xml)
+
+  tags, images = Kotaim::PostUtil.get_tags_and_images(feed.generator, feed.entries.first.url)
+  puts tags.to_s
+  puts images.count
+  puts images[0..2]
+end

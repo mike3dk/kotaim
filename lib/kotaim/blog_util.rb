@@ -41,6 +41,10 @@ module Kotaim
         return format('http://rss.egloos.com/blog/%s', u.host.split('.').first)
       end
 
+      if u.host.include?('blog.me')
+        return format('http://rss.blog.naver.com/%s.xml', u.host.split('.').first)
+      end
+
       format('http://%s/rss', u.host)
     end
   end

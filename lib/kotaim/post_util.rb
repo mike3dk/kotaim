@@ -117,9 +117,16 @@ module Kotaim
     def self.handle_blogme(url)
       return url if url.include?('naver.com')
 
-      resp = RestClient.get(url)
-      doc = Nokogiri::HTML(resp.body)
-      doc.css('frame#screenFrame').attribute('src').value
+      # http://nau2001.blog.me/222158658194
+      # http://blog.naver.com/nau2001/222158658194
+      if url.include?('blog.me')  # rubocop:disable Style/GuardClause
+        u = URI.parse(url)
+
+        user = u.host.split('.').first
+        post_id = u.path
+
+        format('http://blog.naver.com/%s%s', user, post_id)
+      end
     end
 
     def self.sanitize(text)

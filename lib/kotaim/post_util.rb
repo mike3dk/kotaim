@@ -79,7 +79,20 @@ module Kotaim
       ret_img.uniq!
       ret_img.delete_if {|e| e.include?('blank.gif') }
 
+      ret_img = manual_cleanup(ret_img)
+
       [ret_tag, ret_img]
+    end
+
+    def self.manual_cleanup(images)
+      images.map do |img|
+        if img.include?("type=w80_blur")
+          img.gsub!("mblogthumb-phinf.pstatic.net", "postfiles.pstatic.net")
+          img.gsub!("type=w80_blur", "type=w966")
+        elsif img.include?("type=s1")
+          img.gsub!("?type=s1", "")
+        end
+      end
     end
 
     def self.get_tags_and_images_from_daum(url)

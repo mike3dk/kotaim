@@ -62,13 +62,21 @@ RSpec.describe 'blogme' do
 
     it 'collects good tags and images from post' do
       exp0 = ["용산모니터", "lg27인치모니터", "lg모니터", "게이밍모니터", "용산게이밍모니터"]
+
+      #   "https://blogpfthumb-phinf.pstatic.net/MjAxODA4MDlfMTQ4/MDAxNTMzNzQ2NDQ2MzAw.2_c7hGTYwAWgD"\
+      #   "p_H8WMWSDXVtK9iu_MEkFy2ZcqxfIkg.9WJuVHhJp-vvRcL5YBuhYLbQFN6FpuTMt-sSBhanU2og.JPEG.nau2001/IMG_1883.jpg?type=s1",
+      # "https://mblogthumb-phinf.pstatic.net/MjAyMDExMjhfMjYx/MDAxNjA2NDg5MjcxOTc4.GTjdu0p0_E2S6eG"\
+      #   "tpZMYy1stUx5FMBbYmY_tRIhEy2Ig.8N3fai-EnMjZTPTIsjvZrqvPhhmWAJrFlxeLvGdcI5og.JPEG.nau2001/IMG_3931.jpg?type=w80_blur",
+      # "https://mblogthumb-phinf.pstatic.net/MjAyMDExMjdfMTAg/MDAxNjA2NDg5MDkyMjM5.1Y_tnkKDl35tvua4"\
+      #   "utgjKnMZqY-QBF3GHVIrh6uICaYg.wogv0m128SSc8F2D-X9PNK2zILE-sr9tPARbNm7Iv5og.JPEG.nau2001/IMG_3833.jpg?type=w80_blur"
+
       exp1 = [
         "https://blogpfthumb-phinf.pstatic.net/MjAxODA4MDlfMTQ4/MDAxNTMzNzQ2NDQ2MzAw.2_c7hGTYwAWgD"\
-          "p_H8WMWSDXVtK9iu_MEkFy2ZcqxfIkg.9WJuVHhJp-vvRcL5YBuhYLbQFN6FpuTMt-sSBhanU2og.JPEG.nau2001/IMG_1883.jpg?type=s1",
-        "https://mblogthumb-phinf.pstatic.net/MjAyMDExMjhfMjYx/MDAxNjA2NDg5MjcxOTc4.GTjdu0p0_E2S6eG"\
-          "tpZMYy1stUx5FMBbYmY_tRIhEy2Ig.8N3fai-EnMjZTPTIsjvZrqvPhhmWAJrFlxeLvGdcI5og.JPEG.nau2001/IMG_3931.jpg?type=w80_blur",
-        "https://mblogthumb-phinf.pstatic.net/MjAyMDExMjdfMTAg/MDAxNjA2NDg5MDkyMjM5.1Y_tnkKDl35tvua4"\
-          "utgjKnMZqY-QBF3GHVIrh6uICaYg.wogv0m128SSc8F2D-X9PNK2zILE-sr9tPARbNm7Iv5og.JPEG.nau2001/IMG_3833.jpg?type=w80_blur"
+          "p_H8WMWSDXVtK9iu_MEkFy2ZcqxfIkg.9WJuVHhJp-vvRcL5YBuhYLbQFN6FpuTMt-sSBhanU2og.JPEG.nau2001/IMG_1883.jpg",
+        "https://postfiles.pstatic.net/MjAyMDExMjhfMjYx/MDAxNjA2NDg5MjcxOTc4.GTjdu0p0_E2S6eG"\
+          "tpZMYy1stUx5FMBbYmY_tRIhEy2Ig.8N3fai-EnMjZTPTIsjvZrqvPhhmWAJrFlxeLvGdcI5og.JPEG.nau2001/IMG_3931.jpg?type=w966",
+        "https://postfiles.pstatic.net/MjAyMDExMjdfMTAg/MDAxNjA2NDg5MDkyMjM5.1Y_tnkKDl35tvua4"\
+          "utgjKnMZqY-QBF3GHVIrh6uICaYg.wogv0m128SSc8F2D-X9PNK2zILE-sr9tPARbNm7Iv5og.JPEG.nau2001/IMG_3833.jpg?type=w966"
       ]
       xml = RestClient.get(@blogger_rss_url).body
       feed = Feedjira.parse(xml)

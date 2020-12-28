@@ -61,13 +61,19 @@ RSpec.describe 'naver' do
 
     it 'collects good tags and images from post' do
       exp0 = ["EOS850D", "dslr", "dslr카메라", "캐논"]
+
+      # "https://mblogthumb-phinf.pstatic.net/MjAyMDA4MjFfMjYz/MDAxNTk3OTk1OTEzMDA5.H9Mt1P-qTYRU1PgE_ehjsfKHyfaZ"\
+      #   "Kslut1VDq5MC024g.CKyZNE_LxD22U_Xlf_vSzjtvnI140vT2759MWbTTESwg.JPEG.ssamssam48/캡처.JPG?type=w80_blur",
+      # "https://mblogthumb-phinf.pstatic.net/MjAyMDA4MjFfMTg5/MDAxNTk3OTk2MDg2MjEw.nMwnJwwor9Nue24E8WF28VYcrSGNc"\
+      #   "o4CABOFSQy1TRgg.Cjvj782HwIxDrveHgLnygJflxS9okvQKxeshWe-6kXEg.JPEG.ssamssam48/20200820-IMG_5196.jpg?type=w80_blur",
       exp1 = [
-        "https://blogpfthumb-phinf.pstatic.net/20141208_167/ssamssam48_1417966160918tHsvF_JPEG/1234.jpg?type=s1",
-        "https://mblogthumb-phinf.pstatic.net/MjAyMDA4MjFfMjYz/MDAxNTk3OTk1OTEzMDA5.H9Mt1P-qTYRU1PgE_ehjsfKHyfaZ"\
-          "Kslut1VDq5MC024g.CKyZNE_LxD22U_Xlf_vSzjtvnI140vT2759MWbTTESwg.JPEG.ssamssam48/캡처.JPG?type=w80_blur",
-        "https://mblogthumb-phinf.pstatic.net/MjAyMDA4MjFfMTg5/MDAxNTk3OTk2MDg2MjEw.nMwnJwwor9Nue24E8WF28VYcrSGNc"\
-          "o4CABOFSQy1TRgg.Cjvj782HwIxDrveHgLnygJflxS9okvQKxeshWe-6kXEg.JPEG.ssamssam48/20200820-IMG_5196.jpg?type=w80_blur"
+        "https://blogpfthumb-phinf.pstatic.net/20141208_167/ssamssam48_1417966160918tHsvF_JPEG/1234.jpg",
+        "https://postfiles.pstatic.net/MjAyMDA4MjFfMjYz/MDAxNTk3OTk1OTEzMDA5.H9Mt1P-qTYRU1PgE_ehjsfKHyfaZ"\
+          "Kslut1VDq5MC024g.CKyZNE_LxD22U_Xlf_vSzjtvnI140vT2759MWbTTESwg.JPEG.ssamssam48/캡처.JPG?type=w966",
+        "https://postfiles.pstatic.net/MjAyMDA4MjFfMTg5/MDAxNTk3OTk2MDg2MjEw.nMwnJwwor9Nue24E8WF28VYcrSGNc"\
+          "o4CABOFSQy1TRgg.Cjvj782HwIxDrveHgLnygJflxS9okvQKxeshWe-6kXEg.JPEG.ssamssam48/20200820-IMG_5196.jpg?type=w966"
       ]
+
       xml = RestClient.get(@blogger_rss_url).body
       feed = Feedjira.parse(xml)
 
